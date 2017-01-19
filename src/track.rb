@@ -25,37 +25,38 @@ class Track
 
     @sessions.each do |session|
       if add_talk_to(talk, session)
+        update_schedule
         return true
       end
     end
 
+    update_schedule
     false
   end
 
   def update_schedule
+    morning_session_start_time = Time.new(60 * 60 * 9) # 09:00 AM
+    lunch_time = Time.new(60 * 60 * 12) # 12:00 PM
+    afternoon_session_start_time = Time.new(60 * 60 * 13) # 13:00 PM
+    networking_time = Time.new(60 * 60 * 17) # 17:00 PM
 
     # a formatted track will have this data structure:
-    schedule = {morning: {}, lunch: {}, afternoon: {}, evening: {}}
+    # @schedule = {morning: {}, lunch: {}, afternoon: {}, evening: {}}
 
-    @talks = talks.sort_by! {|talk| talk.minutes}
-
-
-    # helpful to get the sessions in order so that the shortest one is always first.
-    @sessions.order_by! {|session| session.minutes}
-    @session.reverse
-
-    @schedule = schedule
+    @schedule[:morning] = build_session(@sessions[0], morning_session_start_time)
+    @schedule[:lunch] = {lunch_time => "Lunch"}
+    @schedule[:afternoon] = build_session(@sessions[1], afternoon_session_start_time)
+    @schedule[:evening] = {networking_time => "Networking Event"}
   end
 
   private
 
-  def build_session(session, key, event_time = Time.new(60 * 60 * 9)) # 9:00 AM
+  def build_session(session, event_time = Time.new(60 * 60 * 9)) # 9:00 AM Default
+    session_data = {}
 
     session.talks.each do |talk|
-      schedule[key][event_time] = talk.details
+      session_data[event_time] = talk.details
 
-      # incriment the event time so that the next event takes place at the end
-      # of the first event
       event_time += talk.minutes * 60
     end
   end
