@@ -1,3 +1,7 @@
+# Needs to require the track file because creation of tracks is part of the
+# default behaviour of this class
+require_relative './track.rb'
+
 class ConferenceManager
   attr_reader :tracks
 
