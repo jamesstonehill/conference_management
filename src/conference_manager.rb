@@ -2,6 +2,8 @@
 # default behaviour of this class
 require_relative './track.rb'
 
+# I actually now think that ConferenceManager isn't an ideal name for this class
+# TODO: change the name of this class to TalkSorter or something like that
 class ConferenceManager
   attr_reader :tracks
 

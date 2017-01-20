@@ -12,11 +12,11 @@ Five basic objects listed in ascending order of granularity:
   * This object stores an array of Talk objects and knows its own duration.  
 3. Track
   * The track object stores two sessions. A track represents a full days worth of events. This object acts as a factory, creating the session objects it needs.
-4. ConferenceManager
+4. ConferenceManager (possible will be renamed in future)
   * The conference manager is the object within which you input all the talks. It also acts as an object factory, creating all the tracks needed to store the objects. The number of factories it creates can be specified in the initialize arguments but it defaults to 2 if this argument is left blank.
 
 
-We also have two types of objects that are responsible for processing the data stored in the Conference Manager into a more schedule like formate. These objects are:
+We also have two types of objects that are responsible for processing the data stored in the Conference Manager into a more schedule like formate. These objects are not totally finished yet but their role is defined as follows:
 
 1. Schedule Builder
   * This object takes a ConferenceManger object as an input and from that input it builds an sort of JSON like object that describes the schedule of the conference.
@@ -24,6 +24,70 @@ We also have two types of objects that are responsible for processing the data s
   * This object takes a ScheduleBuilder object as an input and from that input it can perform a variety of tasks that relate to providing human readable formats of the schedule.
 
 
+#### Code Examples
+
+```ruby
+
+# ==== TALKS =====
+talk = Talk.new("Talk Description 45mins")
+talk.minutes
+# => 45
+
+# OR
+
+talk = Talk.new("Talk Description lightning")
+talk.minutes
+# => 5
+
+# ==== Session =====
+
+# A session that is three hours long
+session = Session.new(60 * 3)
+
+# A session that is four hours long
+session = Session.new(60 * 4)
+
+# ==== Track =====
+
+track = Track.new
+track.sessions
+# => [morning_session, afternoon_session]
+
+# ==== ConferenceManager =====
+
+talks = [talk, talk, talk, talk ...]
+
+conference_manager = ConferenceManager.new(talks)
+conference_manager.tracks
+# => [track1, track2]
+
+# OR
+
+conference_manager = ConferenceManager.new(talks, 4)
+conference_manager.tracks
+# => [track1, track2, track3, track4]
+
+```
+
+
+#### Future Updates
+
+In the future, I might rename the ConferenceManager object to something else and then build another ConferenceManager class that manages all of the objects stated above and provides a single interface for all of them. Then API would look something similar to the following:
+```ruby
+talks = [*an array of Talk objects]
+
+conference_manager = ConferenceManager.new(talks)
+
+conference_manager.preview_schedule
+=> *a schedule printed out to the console
+
+
+conference_manager.save_schedule('schedule/path/schedule.txt')
+# OR
+conference_manager.save_schedule
+# saves schedule at default location
+
+```
 
 ===================================
 
