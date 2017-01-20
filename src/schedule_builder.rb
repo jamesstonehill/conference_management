@@ -30,6 +30,9 @@ class ScheduleBuilder
     return_track["morning_session"] = session_builder(morning_session, morning_start_time)
     return_track["afternoon_session"] = session_builder(afternoon_session, afternoon_start_time)
 
+    return_track["lunch"] = lunch
+    return_track["networking_event"] = networking_event
+
     return_track
   end
 
@@ -43,6 +46,14 @@ class ScheduleBuilder
     end
 
     return_session
+  end
+
+  def lunch
+    {start_time: Time.at(60 * 60 * 11), details: "Lunch"}
+  end
+
+  def networking_event
+    {start_time: Time.at(60 * 60 * 16), details: "Networking Event"}
   end
 
 end

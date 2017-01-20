@@ -21,4 +21,7 @@ describe 'Feature test' do
     Talk.new("Overdoing it in Python 45min"),
     Talk.new("Writing Fast Tests Against Enterprise Rails 60min") ]
 
+
+
+
 end
