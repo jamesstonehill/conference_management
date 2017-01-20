@@ -3,8 +3,8 @@
 require_relative './session.rb'
 
 class Track
-  attr_reader :schedule
-
+  attr_reader :sessions
+  
   MORNING_DURATION = 3 * 60 #in minutes
   AFTERNOON_DURATION = 4 * 60 #in minutes
 
@@ -18,7 +18,6 @@ class Track
     # keep them all in an array that can be treated the same regardless of the
     # number of sessions that exists
     @sessions = [morning, afternoon]
-    @schedule = nil
   end
 
   def add_talk(talk)

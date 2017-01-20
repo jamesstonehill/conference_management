@@ -15,11 +15,11 @@ describe ConferenceManager do
 
 
     it 'sorts the talks by duration in descending order' do
-      manager = ConferenceManager.new([talk_two, talk_one, talk_three])
-
-      # expect(manager.talks).to eq [talk_three, talk_two, talk_one]
-      p manager.talks
-      expect(manager.talks).to_not eq [talk_one, talk_two, talk_three]
+      # manager = ConferenceManager.new([talk_two, talk_one, talk_three])
+      #
+      # # expect(manager.talks).to eq [talk_three, talk_two, talk_one]
+      # p manager.talks
+      # expect(manager.talks).to_not eq [talk_one, talk_two, talk_three]
 
     end
 

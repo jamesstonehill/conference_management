@@ -1,5 +1,5 @@
 class ConferenceManager
-  attr_reader :talks
+  attr_reader :tracks
 
   def initialize(talks, number_of_tracks = 2)
     @talks = talks.sort_by! {|talk| talk.minutes}
