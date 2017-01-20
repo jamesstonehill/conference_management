@@ -22,5 +22,7 @@ talks = [ Talk.new("User Interface CSS in Rails Apps 30min"),
 
 conference_manager = ConferenceManager.new(talks)
 schedule_builder = ScheduleBuilder.new(conference_manager)
+schedule_printer = ScheduleExporter.new(schedule_builder)
 
 puts schedule_builder.schedule
+schedule_printer.preview_schedule

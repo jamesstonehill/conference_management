@@ -1,40 +1,39 @@
-# require 'fileutils'
-# require 'pathname'
-#
-# class ScheduleExporter
-#
-#   def initialize(conference_manager)
-#     @conference_manager = conference_manager
-#   end
-#
-#   def print_schedule
-#     @conference_manager
-#   end
-#
-#   def save_schedule_in(directory_name, file_name)
-#     pn = Pathname.new(file_path)
-#
-#     File.open(pn, [w]) do
-#       @conference_manager.tracks.each do |track|
-#
-#       end
-#     end
-#
-#
-#     {|f| f.write("write your stuff here") }
-#
-#
-#   end
-#
-#   private
-#
-#   def create_file(file_path = "./schedule.txt")
-#
-#     unless File.directory?(dir)
-#       FileUtils.mkdir_p(dir)
-#     end
-#
-#     path << ".#{extension}"
-#     File.new(path, 'w')
-#   end
-# end
+
+class ScheduleExporter
+
+  def initialize(schedule_builder)
+    @schedule = schedule_builder.schedule
+  end
+
+  def preview_schedule
+    # @schedule.each do |track_name , track |
+    #
+    #   puts track_name
+    #
+    #   track["monring_session"].each do |index_number, talk|
+    #     puts "#{talk[:start_time]} #{talk[:details]}"
+    #   end
+    #
+    # end
+
+    puts @schedule.flatten
+
+  end
+
+  private
+
+  def print_session(session)
+    session.each do |number, talk|
+      puts "#{talk[:start_time]} #{talk[:details]}"
+    end
+  end
+  #
+  # def print_lunch(session)
+  #
+  # end
+  #
+  # def print_networking_event(session) do
+  #
+  # end
+
+end

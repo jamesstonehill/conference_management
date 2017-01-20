@@ -10,7 +10,7 @@ class ScheduleBuilder
   private
 
   def build_schedule
-    {track_one: {morning_session: {}, afternoon_session:{}} }
+    # {track_one: {morning_session: {}, afternoon_session:{}} }
     @schedule = {}
 
     @conference_manager.tracks.each_with_index do |track, index|

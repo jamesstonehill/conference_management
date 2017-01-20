@@ -3,6 +3,7 @@
 ### Notes On My Solution ###
 
 
+
 Five basic objects listed in ascending order of granularity:
 
 1. Talk
